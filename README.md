@@ -1,6 +1,6 @@
 # Study Diary CLI
 
-Iugu 4 Devs Warmup
+Iugu 4 Devs Warmup: a CLI program that keep track of what you've been studying.
 
 ## Docs
 
