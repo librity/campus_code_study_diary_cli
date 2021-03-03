@@ -3,5 +3,4 @@
 module CLI
   include CLIPrinters
   include CLIFetchers
-  include CLIStudyItems
 end

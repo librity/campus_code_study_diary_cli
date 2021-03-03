@@ -22,7 +22,7 @@ module CLIFetchers
     gets.chomp
   end
 
-  def fetch_search_word
+  def fetch_query
     print 'Digite uma palavra para procurar: '
     gets.chomp
   end

@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 module CLIPrinters
+  include CLIOptions
+
   def clear
     system('clear')
   end
 
   def print_menu
-    puts '[1] Cadastrar um item para estudar'
-    puts '[2] Ver todos os itens cadastrados'
-    puts '[3] Buscar um item de estudo'
-    puts '[4] Sair'
+    puts "[#{CREATE_STUDY_ITEM}] Cadastrar um item para estudar"
+    puts "[#{VIEW_STUDY_ITEMS}] Ver todos os itens cadastrados"
+    puts "[#{SEARCH_STUDY_ITEMS}] Buscar um item de estudo"
+    puts "[#{EXIT}] Sair"
     print 'Escolha uma opção: '
   end
 
@@ -22,8 +24,8 @@ module CLIPrinters
     puts 'Bem-vindo ao Diário de Estudos, seu companheiro para estudar!'
   end
 
-  def print_empty_collection_message
-    puts 'Nenhum item cadastrado'
+  def print_empty_study_items_message
+    puts 'Nenhum item encontrado'
   end
 
   def print_invalid_option
@@ -31,10 +33,10 @@ module CLIPrinters
   end
 
   def print_study_item_created_message(study_item)
-    puts "Item '#{study_item.title}' da categoria '#{study_item.category}' cadastrado com sucesso!"
+    puts study_item.successfully_created_message
   end
 
-  def print_study_item(index, study_item)
-    puts "##{index + 1} - #{study_item.title} - #{study_item.category}"
+  def print_study_item(study_item)
+    puts study_item.to_s
   end
 end

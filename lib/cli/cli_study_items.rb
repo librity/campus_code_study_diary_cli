@@ -1,30 +1,32 @@
 # frozen_string_literal: true
 
 module CLIStudyItems
+  include CLIPrinters
+  include CLIFetchers
+
   def create_study_item
     title = fetch_title
     category = fetch_category
-    study_item = StudyItem.new(title, category)
+    study_item = new(title: title, category: category)
     print_study_item_created_message(study_item)
 
     study_item
   end
 
-  def print_study_items(collection)
-    return print_empty_collection_message if collection.empty?
+  def print_study_items(study_items)
+    return print_empty_study_items_message if study_items.empty?
 
-    collection.each_with_index do |study_item, index|
-      print_study_item(index, study_item)
-    end
+    puts study_items
   end
 
-  def search_study_items(collection)
-    return print_empty_collection_message if collection.empty?
+  def search_study_items(study_items)
+    return print_empty_study_items_message if study_items.empty?
 
-    term = fetch_search_word
-    found_items = collection.filter do |item|
-      item.title.include?(term) || item.category.include?(term)
+    query = fetch_query
+    matching_items = study_items.filter do |item|
+      item.includes_query?(query)
     end
-    print_study_items(found_items)
+
+    print_study_items(matching_items)
   end
 end

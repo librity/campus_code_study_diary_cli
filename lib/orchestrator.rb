@@ -9,9 +9,7 @@ class Orchestrator
     new.start
   end
 
-  def initialize
-    @study_items = []
-  end
+  def initialize; end
 
   def start
     clear
@@ -34,13 +32,13 @@ class Orchestrator
   end
 
   def should_exit?(option)
-    option == 4
+    option == EXIT
   end
 
   def handle_option(option)
-    return study_items << create_study_item if option == 1
-    return print_study_items(study_items) if option == 2
-    return search_study_items(study_items) if option == 3
+    return StudyItem.register if option == CREATE_STUDY_ITEM
+    return StudyItem.print_all if option == VIEW_STUDY_ITEMS
+    return StudyItem.search if option == SEARCH_STUDY_ITEMS
 
     print_invalid_option
   end
