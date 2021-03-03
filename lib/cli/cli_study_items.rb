@@ -7,7 +7,7 @@ module CLIStudyItems
   def create_study_item
     title = fetch_title
     category = fetch_category
-    study_item = new(title: title, category: category)
+    study_item = StudyItem.new(title: title, category: category)
     print_study_item_created_message(study_item)
 
     study_item

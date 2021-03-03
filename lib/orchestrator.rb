@@ -36,9 +36,9 @@ class Orchestrator
   end
 
   def handle_option(option)
-    return StudyItem.register if option == CREATE_STUDY_ITEM
-    return StudyItem.print_all if option == VIEW_STUDY_ITEMS
-    return StudyItem.search if option == SEARCH_STUDY_ITEMS
+    return StudyItems.register if option == CREATE_STUDY_ITEM
+    return StudyItems.print_all if option == VIEW_STUDY_ITEMS
+    return StudyItems.search if option == SEARCH_STUDY_ITEMS
 
     print_invalid_option
   end
