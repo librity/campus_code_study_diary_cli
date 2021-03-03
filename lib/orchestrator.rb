@@ -30,7 +30,7 @@ class Orchestrator
     handle_option(option)
 
     await_keypress_and_clear
-    main_loop(option)
+    main_loop
   end
 
   def should_exit?(option)
