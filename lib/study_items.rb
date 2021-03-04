@@ -1,34 +1,34 @@
 # frozen_string_literal: true
 
 class StudyItems
+  extend SQL
   extend CLIStudyItems
 
-  @@last_id = 0
-  @@study_items = []
-
-  def self.generate_id
-    next_id = @@last_id + 1
-    @@last_id = next_id
-
-    next_id
-  end
-
   def self.all
-    @@study_items
+    run(study_items_query).map do |row|
+      next StudyItem.new(cast_study_item(row)) if row[3].nil?
+
+      SpecialStudyItem.new(cast_special_study_item(row))
+    end
   end
 
   def self.register
-    new_study_item = create_study_item
-    all << new_study_item
+    title, category = fetch_title_and_category
+    run(insert_study_item_query, [title, category])
 
-    new_study_item
+    cast = cast_study_item([nil, title, category, nil])
+    study_item = StudyItem.new(cast)
+    print_study_item_created_message(study_item)
   end
 
   def self.register_special
-    new_special_study_item = create_new_special_study_item
-    all << new_special_study_item
+    title, category = fetch_title_and_category
+    deadline = fetch_deadline
+    run(insert_special_study_item_query, [title, category, deadline.to_s])
 
-    new_special_study_item
+    cast = cast_special_study_item([nil, title, category, deadline])
+    study_item = SpecialStudyItem.new(cast)
+    print_study_item_created_message(study_item)
   end
 
   def self.print_all
@@ -37,5 +37,13 @@ class StudyItems
 
   def self.search
     search_study_items(all)
+  end
+
+  def self.cast_study_item(row)
+    OpenStruct.new(id: row[0], title: row[1], category: row[2], created_at: row[4])
+  end
+
+  def self.cast_special_study_item(row)
+    OpenStruct.new(cast_study_item(row).to_h.merge(deadline: row[3]))
   end
 end

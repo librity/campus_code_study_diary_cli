@@ -22,9 +22,13 @@ module CLIFetchers
     gets.chomp
   end
 
-  def fetch_date
-    print 'Digite a data do seu item de estudo: '
-    gets.chomp
+  def fetch_title_and_category
+    [fetch_title, fetch_category]
+  end
+
+  def fetch_deadline
+    print 'Digite a data limite do seu item de estudo: '
+    Date.parse_or_today(gets.chomp)
   end
 
   def fetch_query

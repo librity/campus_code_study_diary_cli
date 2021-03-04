@@ -3,10 +3,11 @@
 class StudyItem
   attr_reader :id, :title, :category
 
-  def initialize(title: 'Misc', category:)
-    @id = StudyItems.generate_id
-    @title = title
-    @category = category
+  def initialize(struct)
+    @id = struct.id
+    @title = struct.title
+    @category = struct.category
+    @created_at = struct.created_at
   end
 
   def includes_query?(query)

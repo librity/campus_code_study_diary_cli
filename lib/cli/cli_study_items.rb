@@ -4,25 +4,6 @@ module CLIStudyItems
   include CLIPrinters
   include CLIFetchers
 
-  def create_study_item
-    title = fetch_title
-    category = fetch_category
-    study_item = StudyItem.new(title: title, category: category)
-    print_study_item_created_message(study_item)
-
-    study_item
-  end
-
-  def create_new_special_study_item
-    title = fetch_title
-    category = fetch_category
-    date = fetch_date
-    study_item = SpecialStudyItem.new(title: title, category: category, date: date)
-    print_study_item_created_message(study_item)
-
-    study_item
-  end
-
   def print_study_items(study_items)
     return print_empty_study_items_message if study_items.empty?
 

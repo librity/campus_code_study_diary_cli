@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class SpecialStudyItem < StudyItem
-  attr_reader :date
+  attr_reader :deadline
 
-  def initialize(title:, category:, date:)
-    super(title: title, category: category)
-    @date = Date.parse_or_today(date)
+  def initialize(struct)
+    super(struct)
+    @deadline = struct.deadline
   end
 
   def includes_query?(query)
-    super || date.to_s.include?(query)
+    super || deadline.to_s.include?(query)
   end
 
   def to_s
-    "##{id} - #{title} - #{category} - #{date}"
+    "##{id} - #{title} - #{category} - #{deadline}"
   end
 
   def successfully_created_message
-    "Item '#{title}' da categoria '#{category}' e data #{date} cadastrado com sucesso!"
+    "Item '#{title}' da categoria '#{category}' e data de entrega #{deadline} cadastrado com sucesso!"
   end
 end

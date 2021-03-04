@@ -1,13 +1,54 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    setup                                              :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lpaulo-m <lpaulo-m@student.42sp.org.br>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/03/03 17:03:38 by lpaulo-m          #+#    #+#              #
-#    Updated: 2021/03/03 17:03:39 by lpaulo-m         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#!/usr/bin/env ruby
 
-# !/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'fileutils'
+require 'sqlite3'
+require 'colorize'
+
+include FileUtils
+
+APP_ROOT = Dir.pwd
+DATABASE_DIR = File.join(Dir.pwd, 'db')
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==".red)
+end
+
+puts '=== Running setup ==='.blue
+
+chdir APP_ROOT do
+  puts "\n==> Installing gems".yellow
+
+  system! 'gem install bundler --conservative'
+  system('bundle check') || system!('bundle install')
+
+  puts "==> Gems installed successfully\n".green
+end
+
+def initialize_database
+  database = SQLite3::Database.new 'study_diary.db'
+
+  database.execute <<-SQL
+    create table study_items (
+      id INTEGER PRIMARY KEY,
+      title VARCHAR(50) DEFAULT 'Misc',
+      category VARCHAR(50),
+      deadline DATE,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+  SQL
+end
+
+chdir DATABASE_DIR do
+  puts "\n==> Initializing database".yellow
+
+  if File.exist?(DATABASE_DIR + '/study_diary.db')
+    puts "==> Database already exists\n".green
+  else
+    initialize_database
+    puts "==> Database created successfully\n".green
+  end
+end
+
+puts "\n=== Setup complete ===".blue

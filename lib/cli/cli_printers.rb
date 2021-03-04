@@ -9,7 +9,7 @@ module CLIPrinters
 
   def print_menu
     puts "[#{REGISTER_STUDY_ITEM}] Cadastrar um item de estudo"
-    puts "[#{REGISTER_SPECIAL_STUDY_ITEM}] Cadastrar um item de estudo especial"
+    puts "[#{REGISTER_SPECIAL_STUDY_ITEM}] Cadastrar um item de estudo com data limite"
     puts "[#{VIEW_STUDY_ITEMS}] Ver todos os itens cadastrados"
     puts "[#{SEARCH_STUDY_ITEMS}] Buscar um item de estudo"
     puts "[#{EXIT}] Sair"
