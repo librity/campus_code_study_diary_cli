@@ -22,6 +22,10 @@ module SQL
     read_file('insert_special_study_item.sql')
   end
 
+  def delete_study_item
+    read_file('delete_study_item.sql')
+  end
+
   private
 
   def read_file(file)

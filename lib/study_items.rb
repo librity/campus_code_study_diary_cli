@@ -31,6 +31,13 @@ class StudyItems
     print_study_item_created_message(study_item)
   end
 
+  def self.remove
+    id = fetch_deleted_id
+    run(delete_study_item, [id])
+
+    print_study_item_deleted_successfully(id)
+  end
+
   def self.print_all
     print_study_items(all)
   end

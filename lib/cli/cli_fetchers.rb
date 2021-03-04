@@ -36,6 +36,11 @@ module CLIFetchers
     gets.chomp
   end
 
+  def fetch_deleted_id
+    print 'Digite o ID do item que deseja deletar: '.green
+    gets.to_i
+  end
+
   def fetch_next_menu_option
     print_menu
     gets.to_i

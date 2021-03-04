@@ -38,6 +38,7 @@ class Orchestrator
   def handle_option(option)
     return StudyItems.register if option == REGISTER_STUDY_ITEM
     return StudyItems.register_special if option == REGISTER_SPECIAL_STUDY_ITEM
+    return StudyItems.remove if option == DELETE_STUDY_ITEM
     return StudyItems.print_all if option == VIEW_STUDY_ITEMS
     return StudyItems.search if option == SEARCH_STUDY_ITEMS
 

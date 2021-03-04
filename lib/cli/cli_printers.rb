@@ -12,6 +12,7 @@ module CLIPrinters
   def print_menu
     puts "[#{REGISTER_STUDY_ITEM}] Cadastrar um item de estudo".yellow
     puts "[#{REGISTER_SPECIAL_STUDY_ITEM}] Cadastrar um item de estudo com data limite".yellow
+    puts "[#{DELETE_STUDY_ITEM}] Deletar item de estudo".yellow
     puts "[#{VIEW_STUDY_ITEMS}] Ver todos os itens cadastrados".yellow
     puts "[#{SEARCH_STUDY_ITEMS}] Buscar um item de estudo".yellow
     puts "[#{EXIT}] Sair".red
@@ -33,6 +34,10 @@ module CLIPrinters
 
   def print_invalid_option
     puts 'Opção inválida'.blue
+  end
+
+  def print_study_item_deleted_successfully(id)
+    puts "Item de estudo ##{id} deletado!".magenta
   end
 
   def print_table_separator
