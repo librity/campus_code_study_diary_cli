@@ -24,6 +24,13 @@ class StudyItems
     new_study_item
   end
 
+  def self.register_special
+    new_special_study_item = create_new_special_study_item
+    all << new_special_study_item
+
+    new_special_study_item
+  end
+
   def self.print_all
     print_study_items(all)
   end

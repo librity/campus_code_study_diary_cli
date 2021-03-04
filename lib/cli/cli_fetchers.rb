@@ -22,6 +22,11 @@ module CLIFetchers
     gets.chomp
   end
 
+  def fetch_date
+    print 'Digite a data do seu item de estudo: '
+    gets.chomp
+  end
+
   def fetch_query
     print 'Digite uma palavra para procurar: '
     gets.chomp
