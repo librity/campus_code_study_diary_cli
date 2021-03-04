@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StudyItem
-  attr_reader :id, :title, :category
+  attr_reader :id, :title, :category, :created_at
 
   def initialize(struct)
     @id = struct.id
@@ -15,10 +15,10 @@ class StudyItem
   end
 
   def to_s
-    "##{id} - #{title} - #{category}"
+    "##{id} - #{title} - #{category}".cyan
   end
 
   def successfully_created_message
-    "Item '#{title}' da categoria '#{category}' cadastrado com sucesso!"
+    "Item '#{title}' da categoria '#{category}' cadastrado com sucesso!".magenta
   end
 end

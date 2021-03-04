@@ -7,7 +7,9 @@ module CLIStudyItems
   def print_study_items(study_items)
     return print_empty_study_items_message if study_items.empty?
 
-    puts study_items
+    print_study_item_table_head
+    study_items.each { |item| print_study_item(item) }
+    print_table_separator
   end
 
   def search_study_items(study_items)

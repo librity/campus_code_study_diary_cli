@@ -13,10 +13,10 @@ class SpecialStudyItem < StudyItem
   end
 
   def to_s
-    "##{id} - #{title} - #{category} - #{deadline}"
+    "##{id} - #{title} - #{category} - #{deadline}".cyan
   end
 
   def successfully_created_message
-    "Item '#{title}' da categoria '#{category}' e data de entrega #{deadline} cadastrado com sucesso!"
+    "Item '#{title}' da categoria '#{category}' e data de entrega #{deadline} cadastrado com sucesso!".magenta
   end
 end

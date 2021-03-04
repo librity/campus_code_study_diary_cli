@@ -3,7 +3,7 @@
 module CLIFetchers
   def await_keypress
     puts
-    puts 'Pressione enter para continuar'
+    puts 'Pressione enter para continuar'.green
     gets
   end
 
@@ -13,12 +13,12 @@ module CLIFetchers
   end
 
   def fetch_title
-    print 'Digite o título do seu item de estudo: '
+    print 'Digite o título do seu item de estudo: '.green
     gets.chomp
   end
 
   def fetch_category
-    print 'Digite a categoria do seu item de estudo: '
+    print 'Digite a categoria do seu item de estudo: '.green
     gets.chomp
   end
 
@@ -27,12 +27,12 @@ module CLIFetchers
   end
 
   def fetch_deadline
-    print 'Digite a data limite do seu item de estudo: '
+    print 'Digite a data limite do seu item de estudo: '.green
     Date.parse_or_today(gets.chomp)
   end
 
   def fetch_query
-    print 'Digite uma palavra para procurar: '
+    print 'Digite uma palavra para procurar: '.green
     gets.chomp
   end
 
